@@ -35,8 +35,14 @@ public class OrGate extends Gate {
 	}
 	@Override
 	public boolean calculate(boolean IN1Box, boolean IN2Box) {
-		// TODO Auto-generated method stub
-		return true;
+		OrGate or = new OrGate();
+		Source source = new Source();
+		Source source2 = new Source();
+		source.turn(IN1Box);
+		source2.turn(IN2Box);
+		or.connect(0,  source);
+		or.connect(1,  source2);
+			return or.read();
 	}
 
 

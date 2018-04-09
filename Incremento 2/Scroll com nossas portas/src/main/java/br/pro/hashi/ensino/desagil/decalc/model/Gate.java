@@ -4,7 +4,7 @@ public abstract class Gate implements Emitter, Receiver {
 	private String name;
 	public double size;
 
-	protected Gate(String name,double size) {
+	protected Gate(String name,int size) {
 		this.name = name;
 		this.size = size;
 	}

@@ -22,6 +22,13 @@ public class NotGate extends Gate{
 
 	@Override
 	public boolean calculate(boolean IN1Box, boolean IN2Box) {
-		return IN1Box;
+		NotGate not = new NotGate();
+		Source source = new Source();
+		source.turn(IN1Box);
+		not.connect(0,  source);
+		
+		
+		
+		return not.read();
 	}
 }

@@ -41,8 +41,14 @@ public class XorGate extends Gate {
 	}
 	@Override
 	public boolean calculate(boolean IN1Box, boolean IN2Box) {
-		// TODO Auto-generated method stub
-		return true;
+		XorGate xor = new XorGate();
+		Source source = new Source();
+		Source source2 = new Source();
+		source.turn(IN1Box);
+		source2.turn(IN2Box);
+		xor.connect(0,  source);
+		xor.connect(1,  source2);
+			return xor.read();
 	}
 
 

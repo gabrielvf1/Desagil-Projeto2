@@ -31,35 +31,26 @@ public class View extends JPanel implements ActionListener {
 
 	public View(LinkedList<Gate> model) {
 
-		// A classe JComboBox representa um componente que pode ser usado como menu:
-		// https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html.
+		
 		menu = new JComboBox<>();
 
-		// Os itens do menu são instâncias de Calculator. O texto exibido para cada
-		// item é a String devolvida pelo método toString, por isso demos esse nome.
+
 		for(Gate gate: model) {
 			menu.addItem(gate);
 		}
 
-		// Todo painel precisa de um layout, que estabelece como os componentes
-		// são organizados dentro dele. O layout escolhido na linha abaixo é o
-		// mais simples possível: simplesmente enfileira todos eles na vertical.
+
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		// Adiciona o menu a este painel.
 		add(menu);
 
-		// Adiciona o subpainel da primeira calculadora a este painel.
 		addCalculatorView(0);
 
-		// Estabelece que este painel reage a mudanças no menu.
-		// Isso só pode ser feito se este painel for do tipo
-		// ActionListener, por isso ele implementa essa interface.
 		menu.addActionListener(this);
 	}
 
 
-	// Adiciona o subpainel de uma calculadora a este painel.
+
 	private void addCalculatorView(int index) {
 		Gate gate = menu.getItemAt(index);
 		calculatorView = new CalculatorView(gate);
@@ -67,16 +58,12 @@ public class View extends JPanel implements ActionListener {
 	}
 
 
-	// Método exigido pela interface ActionListener, que representa a reação a uma
-	// mudança no menu: remover o subpainel de calculadora que está atualmente neste
-	// painel e adicionar o subpainel correspondente à calculadora selecionada no menu.
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		remove(calculatorView);
 		int index = menu.getSelectedIndex();
 		addCalculatorView(index);
 
-		// Linha necessária para evitar um bug gráfico. Não se preocupe em entendê-la.
 		((JFrame) SwingUtilities.getRoot(this)).pack();
 	}
 }
