@@ -5,9 +5,7 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 
 import br.pro.hashi.ensino.desagil.decalc.model.AndGate;
-import br.pro.hashi.ensino.desagil.decalc.model.CCCCalculator;
-import br.pro.hashi.ensino.desagil.decalc.model.CFCCalculator;
-import br.pro.hashi.ensino.desagil.decalc.model.Calculator;
+import br.pro.hashi.ensino.desagil.decalc.model.Gate;
 import br.pro.hashi.ensino.desagil.decalc.model.NandGate;
 import br.pro.hashi.ensino.desagil.decalc.model.NotGate;
 import br.pro.hashi.ensino.desagil.decalc.model.OrGate;
@@ -23,7 +21,7 @@ public class Decalc {
 			public void run() {
 
 				// Constrói o modelo.
-				LinkedList<Calculator> model = new LinkedList<>();
+				LinkedList<Gate> model = new LinkedList<>();
 				model.add(new AndGate());
 				model.add(new NotGate());
 				model.add(new NandGate());

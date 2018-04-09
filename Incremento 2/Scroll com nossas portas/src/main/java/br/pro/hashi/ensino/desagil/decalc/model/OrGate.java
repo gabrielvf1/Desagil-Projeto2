@@ -1,12 +1,12 @@
 package br.pro.hashi.ensino.desagil.decalc.model;
 
-public class OrGate extends Calculator {
+public class OrGate extends Gate {
 	private NandGate nand1;
 	private NandGate nand2;
 	private NandGate nand3;
 
 	public OrGate(){
-		super("OrGate");
+		super("OrGate", 2);
 		nand1 = new NandGate();
 		nand2 = new NandGate();
 		nand3 = new NandGate();
@@ -34,9 +34,9 @@ public class OrGate extends Calculator {
 
 	}
 	@Override
-	public double calculate(double weight, double radius) {
+	public boolean calculate(boolean IN1Box, boolean IN2Box) {
 		// TODO Auto-generated method stub
-		return 0;
+		return true;
 	}
 
 

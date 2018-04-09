@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import br.pro.hashi.ensino.desagil.decalc.model.Calculator;
+import br.pro.hashi.ensino.desagil.decalc.model.Gate;
 
 // A classe JPanel representa um painel da interface gráfica,
 // onde você pode adicionar componentes como menus e botões.
@@ -25,11 +25,11 @@ public class View extends JPanel implements ActionListener {
 
 	// As duas componentes do painel principal:
 	// o menu e o subpainel de uma calculadora.
-	private JComboBox<Calculator> menu;
+	private JComboBox<Gate> menu;
 	private CalculatorView calculatorView;
 
 
-	public View(LinkedList<Calculator> model) {
+	public View(LinkedList<Gate> model) {
 
 		// A classe JComboBox representa um componente que pode ser usado como menu:
 		// https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html.
@@ -37,8 +37,8 @@ public class View extends JPanel implements ActionListener {
 
 		// Os itens do menu são instâncias de Calculator. O texto exibido para cada
 		// item é a String devolvida pelo método toString, por isso demos esse nome.
-		for(Calculator calculator: model) {
-			menu.addItem(calculator);
+		for(Gate gate: model) {
+			menu.addItem(gate);
 		}
 
 		// Todo painel precisa de um layout, que estabelece como os componentes
@@ -61,8 +61,8 @@ public class View extends JPanel implements ActionListener {
 
 	// Adiciona o subpainel de uma calculadora a este painel.
 	private void addCalculatorView(int index) {
-		Calculator calculator = menu.getItemAt(index);
-		calculatorView = new CalculatorView(calculator);
+		Gate gate = menu.getItemAt(index);
+		calculatorView = new CalculatorView(gate);
 		add(calculatorView);
 	}
 

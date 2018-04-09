@@ -2,13 +2,14 @@ package br.pro.hashi.ensino.desagil.decalc.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 
 import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import br.pro.hashi.ensino.desagil.decalc.model.Calculator;
+import br.pro.hashi.ensino.desagil.decalc.model.Gate;
 
 // A classe JPanel representa um painel da interface gráfica,
 // onde você pode adicionar componentes como menus e botões.
@@ -21,49 +22,55 @@ public class CalculatorView extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 
-	private Calculator calculator;
+//	private static final boolean IN1Box = true;
+//
+//
+//	private static final boolean IN2Box = true;
+
+
+	private Gate gate;
 
 	// A classe JTextField representa um componente usado para digitação de texto.
 	// https://docs.oracle.com/javase/tutorial/uiswing/components/textfield.html
-	private	JTextField weightField;
-	private	JTextField radiusField;
-	private JTextField resultField;
 
 
-	public CalculatorView(Calculator calculator) {
-		this.calculator = calculator;
-
-		weightField = new JTextField();
-		radiusField = new JTextField();
-		resultField = new JTextField();
+	public CalculatorView(Gate gate) {
+		this.gate = gate;
 
 		// A classe JLabel representa um componente que é simplesmente texto fixo.
 		// https://docs.oracle.com/javase/tutorial/uiswing/components/label.html
-		JLabel weightLabel = new JLabel("Weight");
-		JLabel radiusLabel = new JLabel("Radius");
-		JLabel resultLabel = new JLabel("Result");
-
-		// Todo painel precisa de um layout, que estabelece como os componentes
-		// são organizados dentro dele. O layout escolhido na linha abaixo é o
-		// mais simples possível: simplesmente enfileira todos eles na vertical.
+		JLabel entradas = new JLabel("Entradas");
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		// Adiciona todas as componentes a este subpainel.
-		add(weightLabel);
-		add(weightField);
-		add(radiusLabel);
-		add(radiusField);
-		add(resultLabel);
-		add(resultField);
+		if (gate.size==1){
+			JCheckBox IN1Box = new JCheckBox("Entrada 1"); 
+			IN1Box.setSelected(true);
+			add(entradas);
+			add(IN1Box);
+			IN1Box.addActionListener(this);
+		}
+		else{
+			JCheckBox IN1Box = new JCheckBox("Entrada 1"); 
+			IN1Box.setSelected(false);
+			JCheckBox IN2Box = new JCheckBox("Entrada 2");
+			IN1Box.setSelected(false);
+			add(entradas);
+			add(IN1Box);
+			add(IN2Box);
+			IN1Box.addActionListener(this);
+			IN2Box.addActionListener(this);
+			
+		}
+	
+		
 
 		// Estabelece que este subpainel reage ao usuário digitar nos dois
 		// primeiros campos. Isso só pode ser feito se este subpainel for
 		// do tipo ActionListener, por isso ele implementa essa interface.
-		weightField.addActionListener(this);
-		radiusField.addActionListener(this);
+
 
 		// Estabelece que o terceiro campo está desativado, não é digitável.
-		resultField.setEnabled(false);
+
 
 		// Não podemos esquecer de chamar update na inicialização,
 		// caso contrário a interface só ficará consistente depois
@@ -71,25 +78,33 @@ public class CalculatorView extends JPanel implements ActionListener {
 		// A definição exata do método update é dada logo abaixo.
 		update();
 	}
-
+	
 
 	// Método que lê o peso e o raio dos primeiros campos,
 	// calcula a densidade e a escreve no terceiro campo.
-	private void update() {
-		double weight;
-		double radius;
-
+	private void update(){
+		boolean IN1 = false;
+		boolean IN2 = false;
+//		ItemEvent e;
+//		ItemSelectable source = e.getItemSelectable();
+		
+		JCheckBox resultBox = new JCheckBox("Resulto");
+		add(resultBox);
+		resultBox.setEnabled(false);
+		
+//		if (IN1Box.isSelected()){
+//			IN1Box=true;
+//		}
 		try {
-			weight = Double.parseDouble(weightField.getText());
-			radius = Double.parseDouble(radiusField.getText());
-		}
+				
+			}
+			
 		catch(NumberFormatException exception) {
-			resultField.setText("?");
 			return;
 		}
 
-		double result = calculator.calculate(weight, radius);
-		resultField.setText(Double.toString(result));
+		boolean result = gate.calculate(IN1, IN2);
+		resultBox.setSelected(result);
 	}
 
 
@@ -97,6 +112,25 @@ public class CalculatorView extends JPanel implements ActionListener {
 	// a reação a uma digitação do usuário nos dois primeiros campos.
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		
 		update();
+	}
+	public void itemStateChanged(ItemEvent e) {
+	    Object source = e.getItemSelectable();
+
+	    if (source == IN1Box.) {
+	        //...make a note of it...
+	    } else if (source == glassesButton) {
+	        //...make a note of it...
+	    } else if (source == hairButton) {
+	        //...make a note of it...
+	    } else if (source == teethButton) {
+	        //...make a note of it...
+	    }
+
+	    if (e.getStateChange() == ItemEvent.DESELECTED)
+	        //...make a note of it...
+	    ...
+	    updatePicture();
 	}
 }

@@ -1,15 +1,15 @@
 package br.pro.hashi.ensino.desagil.decalc.model;
 
-public class AndGate extends Calculator{
+public class AndGate extends Gate{
 	public AndGate() {
-		super("AndGate");
+		super("AndGate", 2);
 	}
 	private NandGate nand1;
 	private NandGate nand2;
 
 	@Override
-	public double calculate(double weight, double radius) {
-		return 0;
+	public boolean calculate(boolean IN1Box, boolean IN2Box) {
+		return IN1Box;
 	}
 	@Override
 	public void connect(int pinIndex, Emitter emitter) {

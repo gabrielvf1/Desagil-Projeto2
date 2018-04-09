@@ -1,11 +1,11 @@
 package br.pro.hashi.ensino.desagil.decalc.model;
 
-public class NotGate extends Calculator{
+public class NotGate extends Gate{
 	
 	private NandGate nand1;
 		
 	public NotGate(){
-		super("NotGate");
+		super("NotGate", 1);
 		nand1 = new NandGate();
 	}
 
@@ -21,7 +21,7 @@ public class NotGate extends Calculator{
 	}
 
 	@Override
-	public double calculate(double weight, double radius) {
-		return 0;
+	public boolean calculate(boolean IN1Box, boolean IN2Box) {
+		return IN1Box;
 	}
 }
